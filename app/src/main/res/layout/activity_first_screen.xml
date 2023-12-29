@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.andika.suitmedia.firstscreen.FirstScreenViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".firstscreen.FirstScreenActivity"
+    android:background="@drawable/background">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="116dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/ic_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/inputNama"
+        style="@style/InputFieldStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:hint="Name"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/inputPalindrome"
+        style="@style/InputFieldStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Palindrome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNama" />
+
+
+    <Button
+        android:id="@+id/buttonCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="116dp"
+        android:text="Check"
+        android:enabled="@{viewModel.buttonCheckEnabled}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPalindrome" />
+
+    <Button
+        android:id="@+id/buttonNext"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Next"
+        android:enabled="@{viewModel.buttonNextEnabled}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
