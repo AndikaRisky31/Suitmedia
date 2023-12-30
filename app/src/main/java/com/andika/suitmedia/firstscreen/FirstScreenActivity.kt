@@ -1,4 +1,5 @@
 package com.andika.suitmedia.firstscreen
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -20,6 +21,11 @@ class FirstScreenActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[FirstScreenViewModel::class.java]
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
 
         binding.inputPalindrome.addTextChangedListener {
             viewModel.updateButtonCheckStatus(it?.toString())
@@ -43,8 +49,12 @@ class FirstScreenActivity : AppCompatActivity() {
         }
 
         binding.buttonNext.setOnClickListener {
+            val inputNama = binding.inputNama.text.toString()
+            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("inputNama",inputNama )
+            editor.apply()
             val intent = Intent(this, SecondScreenActivity::class.java)
-            intent.putExtra("inputNama", binding.inputNama.text.toString())
             startActivity(intent)
         }
 
@@ -55,4 +65,5 @@ class FirstScreenActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 }

@@ -1,5 +1,6 @@
 package com.andika.suitmedia.secondscreen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -27,8 +28,12 @@ class SecondScreenActivity : AppCompatActivity() {
         bindingNavbar.backButton.setOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val inputData = sharedPreferences.getString("inputNama", "")
+        val fullName = sharedPreferences.getString("fullName","Selected UserName")
 
-        binding.name.text = intent.getStringExtra("inputNama")
+        binding.textView3.text = fullName
+        binding.name.text = inputData
         binding.button.setOnClickListener{
             val intent = Intent(this,ThirdScreenActivity::class.java)
             startActivity(intent)
